@@ -1,7 +1,7 @@
 """Torres de Hanói. O problema consiste em mover n discos empilhados (os menores sobre os maiores), de uma haste de origem (A), para uma haste de destino (C), na mesma ordem, respeitando as seguintes regras: apenas um disco pode ser movido por vez, não colocar um disco maior sobre um menor e poder usar uma haste auxiliar (B). """
 
 # Quantidade de discos
-n = 3
+n = int(input("Insira o número de discos: "))
 
 # Inicializando as hastes
 A = list(range(n, 0, -1))  # Haste A com discos empilhados do maior ao menor
