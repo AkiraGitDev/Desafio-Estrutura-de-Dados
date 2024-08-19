@@ -3,34 +3,28 @@
 # Quantidade de discos
 n = int(input("Insira o número de discos: "))
 
-# Inicializando as hastes
-A = list(range(n, 0, -1))  # Haste A com discos empilhados do maior ao menor
-B = []  # Haste B vazia
-C = []  # Haste C vazia
+A = list(range(n, 0, -1))
+B = []
+C = []
 
-# Histórico de movimentos para visualizar a solução
 movimentos = []
 
-# Uma pilha para simular a recursão manualmente
 pilha = [(n, A, C, B)]
 
-while pilha:
-    # Desempilhar a próxima instrução
+while True:
+    if not pilha:  # Verifica se a pilha está vazia
+        break  # Sai do loop se a pilha estiver vazia
+    
     discos, origem, destino, auxiliar = pilha.pop()
 
     if discos == 1:
-        if origem:  # Verifica se a origem não está vazia
-            # Movimento simples: mover um disco de 'origem' para 'destino'
+        if origem:
             disco = origem.pop()
             destino.append(disco)
             movimentos.append((disco, origem, destino))
     else:
-        # Simulando a recursão manualmente, na ordem inversa
-        # Mover n-1 discos de origem para auxiliar usando destino
         pilha.append((discos - 1, auxiliar, destino, origem))
-        # Mover o disco restante para o destino
         pilha.append((1, origem, destino, auxiliar))
-        # Mover os n-1 discos de auxiliar para destino usando origem
         pilha.append((discos - 1, origem, auxiliar, destino))
 
 # Exibindo os movimentos
@@ -39,4 +33,3 @@ for movimento in movimentos:
     origem_nome = ['A', 'B', 'C'][[A, B, C].index(origem)]
     destino_nome = ['A', 'B', 'C'][[A, B, C].index(destino)]
     print(f"Move o disco {disco} de {origem_nome} para {destino_nome}")
-
